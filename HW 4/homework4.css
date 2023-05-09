@@ -1,0 +1,66 @@
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: whitesmoke;
+        border-bottom: 2px solid rgb(89, 131, 222);
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80px;
+      }
+      /*hospital name */
+      header h1 {
+        text-align: center;
+        font-size: 40px;
+        color: rgb(190, 0, 0);
+        font-family: monospace;
+        margin: 0;
+      }
+      /* logo */
+      header img {
+        width: 80px;
+        height: 80px;
+        margin-right: 20px;
+      }
+
+body {
+    background-color: rgb(190, 0, 0);
+    margin-left: 20px;
+    font-size: 20px;
+    font-family: arial;    
+}
+
+input:focus {
+    outline: none;
+    border-color: rgb(89, 131, 222);
+  }
+
+table {
+    font-family: arial, sans-serif;
+    width: 40%;
+    font-size: 15px;
+  }
+  
+  td, th {
+    border-collapse: collapse;
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+.error {
+    color: red;
+    font-style: italic;
+}
+
+div {
+    background-color: rgb(249, 243, 243);
+    border: 15px solid rgb(8, 102, 157);
+    padding: 50px;
+  }
+
+

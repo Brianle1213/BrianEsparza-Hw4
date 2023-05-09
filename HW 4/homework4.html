@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<!--Brian Esparza
+   1922255-homework4.html
+   Date created: 2/17/23
+   Date last edited: 4/3/23
+   Description: This is a registation form for a hospital. This website will 
+   gather basic patient information as well as prompt them to create an account.-->
+
+<html lang="en">
+<head>
+    <header>
+        <!--adds Logo-->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Hospital_pointer.png" alt="NeuMan Hospital">
+        <h1>NeuMan Hospital</h1>
+      </header>
+
+
+    <title>Form</title>
+<!--Connects the CSS file-->
+    <link rel="stylesheet" href="homework4.css">
+</head>
+    <div>
+
+<!--Calls javascript file-->
+        <script src="homework4.js"></script> 
+
+<!--Thank you page-->
+<form id="Form" action="thankyou4.html"> 
+
+<!--Header provides current date-->
+<br>
+<p id="date"></p>
+<script>
+    var today = new Date();
+    var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
+    document.getElementById("date").innerHTML = "Today's date is " + date;
+</script> <br>
+<!--adds Logo-->
+        <p style="text-align:center; font-size: 25px; color:black; font-family: monospace;"><b> Registration Form </b><p> </p> <hr>
+
+<!--Error Messages-->
+
+ <center> <table style="width: 85%;" > 
+      <tr><td>
+        <Label for="Error"> <span style="text-align:center; font-size: 15px; color:rgb(190, 0, 0); font-family: monospace;"  id="FirstName-error"></span>
+        <Label for="Error"> <span style="text-align:left; font-size: 15px; color:rgb(190, 0, 0); font-family: monospace;"  id="LastName-error"></span>
+        <Label for="Error"> <span style="text-align:left; font-size: 15px; color:rgb(190, 0, 0); font-family: monospace;"  id="DOB-error2"></span>
+        <Label for="Error"> <span style="text-align:left; font-size: 15px; color:rgb(190, 0, 0); font-family: monospace;"  id="Address1-error2"></span>
+        <Label for="Error"> <span style="text-align:left; font-size: 15px; color:rgb(190, 0, 0); font-family: monospace;"  id="Address2-error2"></span>
+        <Label for="Error"> <span style="text-align:left; font-size: 15px; color:rgb(190, 0, 0); font-family: monospace;"  id="City-error2"></span>
+        <Label for="Error"> <span style="text-align:left; font-size: 15px; color:rgb(190, 0, 0); font-family: monospace;"  id="-error2"></span>
+      <span style="text-align:center; font-size: 15px; color:rgb(190, 0, 0); font-family: monospace;" > <br> <br> </span>
+        </Label></td> </tr></table>
+  </center>
+    
+    <center><table>
+<!--Names--> <form>
+      <tr>  
+        </tr>
+        <tr>
+          <td><label for="FirstName">First Name:</label> <input type="text" id="FirstName" name="FirstName" placeholder="First Name" oninput="validateFirstName()"><br>
+            <span id="FirstName-error2"></span><br></td>    
+
+        <td><label for="MiddleInitial">Middle Initial:</label> <input type="text" id="MiddleInitial" name="MiddleInitial" maxlength="1" placeholder="I." oninput="validateMiddleInitial()"><br>
+            <span id="MiddleInitial-error"></span><br></td> 
+
+        <td><label for="LastName">Last Name:</label> <input type="text" id="LastName" name="LastName" placeholder="Last Name" oninput="validateLastName()" required minlength="1"><br>
+          <span id="LastName-error2"></span><br></td> 
+
+<!--DOB & SS-->
+      </tr>
+      <tr>  
+        <td><label for="DOB">Date of Birth:</label> <input type="date" id="DOB" name="DOB"
+            onchange="validateBirthday()"> <span id="DOB-error" style="color: red;"></span>
+            <td><label for="ssn">Social Security Number:</label>
+            <input type="text" id="ssn" name="ssn" minlength="9" maxlength="9" placeHolder="#########" required></td>
+            
+            <script> //SS script
+                const ssnInput = document.getElementById('ssn');
+                ssnInput.addEventListener('input', function() {
+                  const value = ssnInput.value.replace(/[^\d-]/g, '');
+                  const lastFour = value.slice(-4);
+                  const hiddenValue = '***-**-' + lastFour;
+                  ssnInput.value = value.length === 9 ? hiddenValue : value; });
+              </script>
+
+<!--Address1-->
+      </tr>
+      <tr>
+        <td><br><label for="Address1">Address Line 1:</label> <input type="text" id="Address1" name="Address1" placeholder="123 street dr." oninput="validateAddress1()" required><br>
+          <span id="Address1-error"><br></span>
+</td>
+
+
+<!--Address2-->
+      </tr>
+      <tr>
+        <td><p style="text-align:left"> Address Line 2:
+        <input type="text" id="Address2" maxlength="30" placeholder="Apt. # " oninput="validateAddress2()"><br>
+        <span id="Address2-error"></span>
+       </td>
+
+<!--City, State, Zip-->
+      </tr>
+      <tr>
+        <td><label for="City">City:</label><input type="text" id="City" minlength="2" maxlength="30" placeholder="City" oninput="validateCity()" required><br>
+        <span id="City-error"></span></td>
+        <!--states-->
+        <td><label for="state">State: </label><select name="State" id="State" required> <option><option value="AL">Alabama</option> <option value="AK">Alaska</option> <option value="AZ">Arizona</option> <option value="AR">Arkansas</option>
+        <option value="CA">California</option> <option value="CO">Colorado</option> <option value="CT">Connecticut</option> <option value="DE">Delaware</option> <option value="DC">District Of Columbia</option>
+        <option value="FL">Florida</option> <option value="GA">Georgia</option> <option value="HI">Hawaii</option> <option value="ID">Idaho</option> <option value="IL">Illinois</option>
+        <option value="IN">Indiana</option> <option value="IA">Iowa</option> <option value="KS">Kansas</option> <option value="KY">Kentucky</option> <option value="LA">Louisiana</option>
+        <option value="ME">Maine</option> <option value="MD">Maryland</option> <option value="MA">Massachusetts</option> <option value="MI">Michigan</option> <option value="MN">Minnesota</option>
+        <option value="MS">Mississippi</option> <option value="MO">Missouri</option> <option value="MT">Montana</option> <option value="NE">Nebraska</option> <option value="NV">Nevada</option>
+        <option value="NH">New Hampshire</option> <option value="NJ">New Jersey</option> <option value="NM">New Mexico</option> <option value="NY">New York</option> <option value="NC">North Carolina</option>
+        <option value="ND">North Dakota</option> <option value="OH">Ohio</option> <option value="OK">Oklahoma</option> <option value="OR">Oregon</option> <option value="PA">Pennsylvania</option>
+        <option value="PR">Puerto Rico</option> <option value="RI">Rhode Island</option> <option value="SC">South Carolina</option> <option value="SD">South Dakota</option>
+        <option value="TN">Tennessee</option> <option value="TX">Texas</option> <option value="UT">Utah</option> <option value="VT">Vermont</option> <option value="VA">Virginia</option>
+        <option value="WA">Washington</option> <option value="WV">West Virginia</option> <option value="WI">Wisconsin</option> <option value="WY">Wyoming</option>
+        </option> </select></td>
+        <!--zip-->
+        <td><label for="Zip">Zip Code:</label><input type="number" id="Zip" minlength="5" maxlength="10" placeholder="#####"
+            onblur="validateZip();" required> <span id="ZipError" style="color: red;"></span> <p></p>
+        </td>
+    </tr>
+     <tr>
+<!--Email-->
+        </tr>
+        <tr>
+    <td><p stle="font-family: arial; text-align:left;">Email:
+        <input type="text" name="email" id="email"  placeholder="name@domain.tdl" onblur="validateEmail();" required>
+        <span id="error" style="color: red;"></span> <p></p>
+     </td> 
+ 
+     
+<!--Phone Number-->
+    <td><p stle="font-family: arial; text-align:left;">Phone Number:
+        <input type="text" id="phone" name="phone" placeholder="(000) 000-0000">
+        <p id="phone-error" style="color: red;"></p>
+        <script>// Phone number script
+            const phoneInput = document.getElementById("phone");
+            phoneInput.addEventListener("blur", formatPhoneNumber);
+            function formatPhoneNumber() {
+                let userInput = phoneInput.value;
+                userInput = userInput.replace(/\D/g, '');
+                // Check if phone number is valid length
+                if (userInput.length !== 10) {
+                    document.getElementById("phone-error").innerHTML = "Please enter a valid 10-digit phone number.";
+                    return;}
+                // Format phone number and update input field value
+                let formattedPhoneNumber = `(${userInput.substring(0, 3)}) ${userInput.substring(3, 6)}-${userInput.substring(6)}`;
+                phoneInput.value = formattedPhoneNumber;
+                document.getElementById("phone-error").innerHTML = "";
+            }
+        </script> </td>
+    </table> <br> <hr>
+</center>
+
+<center>
+
+    <p>Please Provide Your Medical History Information Below</p>
+      <br>
+    <table>
+      <tr>
+        <td><label for="check">Do you have any of the following underlying conditions? <br> <br> Check all that apply:</label></td>
+        <td>
+          <input type="checkbox" name="check" id="checkbox1">Asthma<br>
+          <input type="checkbox" name="check" id="checkbox2">Diabetes<br>
+          <input type="checkbox" name="check" id="checkbox1">HIV<br>
+          <input type="checkbox" name="check" id="checkbox1">Epilepsy<br>
+          <input type="checkbox" name="check" id="checkbox1">Heart disease<br>
+          <input type="checkbox" name="check" id="checkbox1">Schizophrenia<br>
+          <input type="checkbox" name="check" id="checkbox1">Other: <input type="text" id="Other" placeholder="Please specify">
+        </td>
+      </tr>
+    </table>
+
+<!--Text Area-->
+      <br> <hr>
+      <p> Provide a short summary of any other important medical information<p>
+      <label for = "textarea"></label>
+      <textarea cols="50" rows="4" name="textarea"> </textarea> <br> <hr>
+              
+      </center>
+
+
+<!--Radio Buttons-->
+
+<center>
+                    <table>
+                      <tr>
+                        <th><p style="font-size: 17px; font-family: arial;"> Have you been vacinated for Covid-19? </th>
+                        <th><input type="radio" name="radio" id="Yes"> Yes 
+                        <input type="radio" name="radio" id="No" required> No</p></th>
+                      </tr>
+                      <tr>
+                        <th><p style="font-size: 17px; font-family: arial;"> Do you currently have medical insurance? </th>
+                        <th><input type="radio" name="radio2" id="Yes2"> Yes 
+                        <input type="radio" name="radio2" id="No2" required> No </p></th>
+                      </tr>
+                      <tr>
+                        <th><p style="font-size: 17px; font-family: arial;"> Are you over the age of 60? </th>
+                        <th><input type="radio" name="radio3" id="Yes3"> Yes 
+                        <input type="radio" name="radio3" id="No3" required> No </p></th>
+<!--Slide Bar-->
+                      </tr>
+                      <tr>
+                        <th><p style="font-size: 17px; font-family: arial;">If 0 is vegitarian and 10 is only eating meat, estimate your average diet: </p></th>
+                        <th>
+                          <label for="slider"></label>
+                          <input type="range" name="slider" id="slider" value="0" min="0" max="10" oninput="this.nextElementSibling.value = this.value">
+                          <output>0</output>
+                        </th>
+                      </tr>
+                    </table>
+<!-- User Name-->
+    <br> <hr>
+    <p><label for="username"style="font-size: 22px; font-family: arial;">Username:</label>
+        <input type="text" id="username" name="username" minlength="5" maxlength="30" pattern="[a-zA-Z][a-zA-Z0-9]*" required>
+        <span id="username-error" style="color: red;"></span>
+        <script>
+          const usernameInput = document.getElementById("username");
+          const usernameError = document.getElementById("username-error");
+          let validUsername = false;
+
+          usernameInput.addEventListener("input", () => {
+            const username = usernameInput.value;
+            
+            if (username.length < 5 || username.length > 30) {
+              usernameError.innerText = "Username must be between 5 and 30 characters";
+              validUsername = false;
+            } else if (!/^[a-zA-Z][a-zA-Z0-9]*$/.test(username)) {
+              usernameError.innerText = "Username must only contain letters and numbers";
+              validUsername = false;
+            } else {
+              usernameError.innerText = "";
+              validUsername = true;
+            }
+          });
+          
+          usernameInput.addEventListener("blur", () => {
+            if (validUsername) {
+              usernameInput.value = usernameInput.value.toLowerCase();
+            }
+          });
+        </script> <br> 
+
+<!--Password-->
+
+<br><br>
+<label for="Password" style="font-size: 22px; font-family: arial;">New Password:</label>
+<input type="password" id="password" name="password" minlength="8" maxlength="30" required>
+<br><br>
+<label for="ReEnterPassword" style="font-size: 22px; font-family: arial;">Re-enter Password:</label>
+<input type="password" id="ReEnterPassword" name="ReEnterPassword" minlength="8" maxlength="30" required>
+<br><br>
+<span id="password-error" style="color: red;"></span>
+
+
+<script>
+  const nameInput = document.getElementById("FirstName");
+  const passwordInput = document.getElementById("password");
+  const reEnterPasswordInput = document.getElementById("ReEnterPassword");
+  const passwordError = document.getElementById("password-error");
+  let validPassword = false;
+
+  nameInput.addEventListener("input", () => {
+    const firstName = nameInput.value;
+
+    if (firstName.length < 3 || firstName.length > 30) {
+      nameInput.setCustomValidity("Name must be between 5 and 30 characters");
+    } else if (!/^[a-zA-Z][a-zA-Z0-9]*$/.test(firstName)) {
+      nameInput.setCustomValidity("Name must only contain letters and numbers");
+    } else {
+      nameInput.setCustomValidity("");
+    }
+  });
+
+  passwordInput.addEventListener("input", () => {
+    const password = passwordInput.value;
+    const firstName = nameInput.value.toLowerCase();
+
+    if (password.length < 8 || password.length > 30) {
+      passwordError.innerText = "Password must be between 8 and 30 characters";
+      validPassword = false;
+    } else if (password === firstName || password.includes(firstName)) {
+      passwordError.innerText = "Password cannot contain part of the FirstName or username";
+      validPassword = false;
+    } else if (!/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#%^&*()-_+=\\/><.,`~])[A-Za-z0-9!@#%^&*()-_+=\\/><.,`~]+$/.test(password)){
+      passwordError.innerText = "Password must contain at least 1 uppercase letter, 1 number, and 1 special character";
+      validPassword = false;
+    } else {
+      passwordError.innerText = "";
+      validPassword = true;
+    }
+  });
+
+  passwordInput.addEventListener("blur", () => { passwordInput.type = "password"; });
+
+  reEnterPasswordInput.addEventListener("input", () => {
+    if (validPassword && reEnterPasswordInput.value === passwordInput.value) {
+      passwordError.innerText = "";
+    } else {
+      passwordError.innerText = "Passwords do not match";
+    }
+  });
+
+  reEnterPasswordInput.addEventListener("blur", () => {
+    reEnterPasswordInput.type = "password";
+  });
+
+  document.getElementById("submit").addEventListener("click", (event) => {
+    if (!validPassword || !nameInput.checkValidity() || !passwordInput.checkValidity() || !reEnterPasswordInput.checkValidity()) {
+      event.preventDefault();
+    }
+  });
+</script> 
+
+
+
+    <button type="button" onclick="displayData()">Validate</button> <br><br>
+
+
+   <button type="submit" id="submit" disabled>Submit</button> 
+
+
+    <input type="reset" id="reset"> 
+    <br><br> </fomrm> </center>
+
+<body><script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBZTEb6V6tVo-o3NOgwZxgEFvE1rPWmy3o",
+    authDomain: "brian-esparza-hw4.firebaseapp.com",
+    projectId: "brian-esparza-hw4",
+    storageBucket: "brian-esparza-hw4.appspot.com",
+    messagingSenderId: "180923259943",
+    appId: "1:180923259943:web:6d3d1e45bc76d2592b0202",
+    measurementId: "G-G3K71R4QHE"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script></body>
+
+
+
+<!--Footer-->
+    </form>
+    <footer>
+
+<style> i.frame-container { text-align:center;}</style>
+<iframe src="homework4iframe.html" width="100%" height="245"></iframe>
+
+    </footer>
+    
+</html>
+
